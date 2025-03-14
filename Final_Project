@@ -1,1 +1,31 @@
 #Code the project here
+import math
+from scipy.stats import norm
+
+def black_scholes_call(S, K, T, r, sigma):
+    """
+    Calculate the Black-Scholes call option price.
+
+    S : Current stock price
+    K : Strike price
+    T : Time to maturity (in years)
+    r : Risk-free interest rate (as a decimal)
+    sigma : Volatility (as a decimal)
+
+    Returns:
+    float: Call option price
+    """
+    d1 = (math.log(S/K) + (r + 0.5 * sigma ** 2) * T) / (sigma * math.sqrt(T))
+    d2 = d1 - sigma * math.sqrt(T)
+    
+    call_price = S * norm.cdf(d1) - K * math.exp(-r * T) * norm.cdf(d2)
+    return call_price
+
+S = float(input("Enter the current stock price (S): "))
+K = float(input("Enter the strike price (K): "))
+T = float(input("Enter the time to maturity (T in years): "))
+r = float(input("Enter the risk-free interest rate (r): "))
+sigma = float(input("Enter the volatility (σ): "))
+
+call_price = black_scholes_call(S, K, T, r, sigma)
+print(f"\nCall Option Price (Black-Scholes): ${call_price:.2f}")
