@@ -21,6 +21,8 @@ def black_scholes_call(S, K, T, r, sigma):
     call_price = S * norm.cdf(d1) - K * math.exp(-r * T) * norm.cdf(d2)
     return call_price
 
+hola puto autista
+
 S = float(input("Enter the current stock price (S): "))
 K = float(input("Enter the strike price (K): "))
 T = float(input("Enter the time to maturity (T in years): "))
